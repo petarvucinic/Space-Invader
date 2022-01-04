@@ -34,7 +34,7 @@ playerX_change = 0
 
 
 # Enemy
-# For multiple enemies
+# For multiple enemies using list
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -42,6 +42,7 @@ enemyX_change = []
 enemyY_change = []
 num_of_enemies = 6
 
+# For every enemy in list
 for i in range(num_of_enemies):
     enemyImg.append(pygame.image.load('alien.png'))
     enemyX.append(random.randint(0, 735))
@@ -61,9 +62,11 @@ bullet_state = "ready"
 
 # Font
 
+# freesansbold is the only one that is free,
 score_value = 0
 font = pygame.font.Font('freesansbold.ttf', 30)
 
+# Position of our score text
 textX = 10
 textY = 10
 
@@ -95,6 +98,7 @@ def fire_bullet(x, y):
     screen.blit(bulletImg, (x+16, y+10))
 
 def isCollision(enemyX, enemyY, bulletX, bulletY):
+    # Using math formula for distance of two points
     distance = math.sqrt((math.pow(enemyX-bulletX, 2) + math.pow(enemyY - bulletY, 2)))
     if distance < 27:
         return True
@@ -107,9 +111,9 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 running = True
 
 while running:
-    # rgb 
+    # RGB
     screen.fill((0, 0, 0))
-    # bcg image
+    # Background image
     screen.blit(background, (0, 0))
     # playerX += 0.2
 
