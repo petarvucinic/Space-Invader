@@ -4,19 +4,19 @@ import math
 from pygame import mixer
 
 
-# initialize the pygame
+# Initialize the pygame
 import pygame.sprite
 
 pygame.init()
 
-# create the screen
+# Create the screen
 # h, w or x, y axis
 screen = pygame.display.set_mode((800,600))
 
-# background
+# Background
 background = pygame.image.load('background.png')
 
-# title of the screen and icon
+# Title of the screen and icon
 pygame.display.set_caption("Space Invader")
 icon = pygame.image.load('ufo.png')
 pygame.display.set_icon(icon)
@@ -26,15 +26,15 @@ mixer.music.load('background.wav')
 mixer.music.play(-1)
 
 
-# player
+# Player
 playerImg = pygame.image.load('player.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
 
 
-# enemy
-# for multiple enemies
+# Enemy
+# For multiple enemies
 enemyImg = []
 enemyX = []
 enemyY = []
@@ -50,11 +50,11 @@ for i in range(num_of_enemies):
     enemyY_change.append(40)
 
 
-# bullet
+# Bullet
 bulletImg = pygame.image.load('bullet.png')
 bulletX = 0
 bulletY = 480
-# wont use it x direc
+# Won't use it x direc
 bulletX_change = 0
 bulletY_change = 1
 bullet_state = "ready"
@@ -91,7 +91,7 @@ def enemy(x, y, i):
 def fire_bullet(x, y):
     global bullet_state
     bullet_state = "fire"
-    # appear on the center of spaceship
+    # Appear on the center of spaceship
     screen.blit(bulletImg, (x+16, y+10))
 
 def isCollision(enemyX, enemyY, bulletX, bulletY):
@@ -103,7 +103,7 @@ def isCollision(enemyX, enemyY, bulletX, bulletY):
 
 
 
-# game loop
+# Game Loop
 running = True
 
 while running:
@@ -118,7 +118,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        # if keystoke is pressed check wheter its right or left
+        # If keystoke is pressed check wheter its right or left
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 playerX_change = -1.5
@@ -139,7 +139,7 @@ while running:
     
 
     
-    # checnking for boundaries of spaceship so it doesnt go out of bounds
+    # Checnking for boundaries of spaceship so it doesnt go out of bounds
     playerX += playerX_change
 
     if playerX <= 0:
@@ -148,7 +148,7 @@ while running:
         playerX = 736
 
 
-    # enemy movement    
+    # Enemy movement    
     for i in range(num_of_enemies):
 
         # Game over
@@ -182,7 +182,7 @@ while running:
 
         enemy(enemyX[i], enemyY[i], i)
 
-    # bullet movement
+    # Bullet movement
     if bulletY <=0:
         bulletY = 480
         bullet_state = "ready"
